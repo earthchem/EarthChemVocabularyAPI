@@ -6,7 +6,7 @@ The EarthChem Vocabulary API provides various CRUD compliant REST endpoints for 
 * [PostgreSQL database](https://www.postgresql.org/) v8.0+
 
 # Installation
-- After installing PHP, MapServer/MapScript, and PostgreSQL, clone this repo into the root directory and change config in /includes/config.inc.php
+- After installing PHP and PostgreSQL, clone this repo into the root directory and change config in /includes/config.inc.php
 
 
 # Documentation
