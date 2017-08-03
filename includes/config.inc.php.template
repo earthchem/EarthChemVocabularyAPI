@@ -1,0 +1,9 @@
+<?
+
+$dbuser="dbusernamehere";
+$dbpassword="dbpasswordhere";
+$dbname="dbnamehere";
+$dbserver="dbserverhere";
+
+
+?>

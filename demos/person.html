@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EarthChem Person Vocab Autocomplete Demo</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Zilla+Slab" rel="stylesheet">
+	
+	<style>
+	body {
+		font-family: 'Zilla Slab', serif;
+		background: #FFF;
+		color: #333;
+	}
+	</style>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+	<!-- JS file -->
+	<script src="/resources/easyautocomplete/jquery.easy-autocomplete.js"></script> 
+
+	<!-- CSS file -->
+	<link rel="stylesheet" href="/resources/easyautocomplete/easy-autocomplete.min.css"> 
+
+	<!-- Additional CSS Themes file - not required-->
+	<link rel="stylesheet" href="/resources/easyautocomplete/easy-autocomplete.themes.min.css"> 
+
+
+</head>
+<body>
+ 
+<div style="padding-left:200px;padding-top:50px;">
+
+<div class="ui-widget">
+	<h2>Person Vocabulary AutoComplete Demo:</h2>
+  <label for="lookval">Name: </label>
+  <input id="lookval">
+</div>
+
+<div style="padding-top:50px;"/>
+
+<div id="detailwrapper" style="width:600px;display:none;">
+	<fieldset class="aboutpage" style="border: 1px solid #CDCDCD; padding: 8px; padding-bottom:8px; margin: 8px 0">
+		<legend style="color:#cc780a;font-size:1.2em;"><strong>Person Detail:</strong></legend>
+		<div id="resultsdiv" style="font-size:.8em;">
+		</div>
+	</fieldset>
+</div>
+
+</div>
+
+	<script>
+
+
+
+		var options = {
+
+		url: function(phrase) {
+		return "http://vocab.earthchemportal.org/vocabulary/person";
+		},
+
+		listLocation: "results",
+
+		getValue: function(element) {
+		return element.prefLabel.en;
+		},
+
+		ajaxSettings: {
+		dataType: "json",
+		method: "GET",
+		data: {
+		}
+		},
+
+		list: {
+			maxNumberOfElements: 10,
+			onChooseEvent: function() {
+
+				var selectedItemValue = $("#lookval").getSelectedItemData();
+				var thishtml='<table>';
+				thishtml+='<tr><td>URI:</td><td><a href="'+selectedItemValue.uri+'" target="_blank">'+selectedItemValue.uri+'</a></td></tr>';
+				thishtml+='<tr><td>Preferred Label:</td><td>'+selectedItemValue.prefLabel.en+'</td></tr>';
+				thishtml+='<tr><td>Alternate Label:</td><td>'+selectedItemValue.altLabel.en+'</td></tr>';
+				thishtml+='<tr><td>Definition:</td><td>'+selectedItemValue.definition.en+'</td></tr>';
+				thishtml+='</table>';
+				
+				$("#resultsdiv").html(thishtml);
+				$("#detailwrapper").show("slow");
+
+			},
+
+			onHideListEvent: function() {
+				//$("#inputTwo").val("").trigger("change");
+				//$("#detailwrapper").hide("slow");
+				//$("#resultsdiv").html("");
+			}
+		},
+
+		preparePostData: function(data) {
+		data.label = $("#lookval").val();
+		return data;
+		},
+		
+		minCharNumber: 2,
+		theme: "plate-dark",
+		
+		requestDelay: 300
+		};
+
+		$("#lookval").easyAutocomplete(options);
+
+		$( "#lookval" ).keyup(function() {
+			if($("#lookval").val()==""){
+				$("#detailwrapper").hide();
+				$("#resultsdiv").html("");
+			}
+		});
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EarthChem Rock Classification Vocab Autocomplete Demo</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Zilla+Slab" rel="stylesheet">
+	
+	<style>
+
+		a:link {
+			color: #c41515;
+			text-decoration:none;
+		}
+
+		a:visited {
+			color: #c41515;
+		}
+
+		a:hover {
+			color: #fc5a5a;
+		}
+
+		body {
+			font-family: 'Zilla Slab', serif;
+			background: #FFF;
+			color: #333;
+		}
+
+		#header {
+			width: 960px;
+			margin: 0px auto;
+			margin-top: 0px;
+			margin-top: 5px;
+			padding: 0px;
+			margin-bottom:10px;
+			font-size: 40px;
+			font-weight:bold;
+			text-align:center;
+			border-bottom:#333333 1px solid;
+		}
+
+		#wrapper {
+			width: 960px;
+			margin: 0px auto;
+			margin-top: 0px;
+			margin-top: 5px;
+			padding: 0px;
+			font-size: 16px;
+		}
+
+		.dbitem {
+			width: 940px;
+			margin: 0px auto;
+			margin-top: 0px;
+			margin-top: 5px;
+			padding: 0px;
+			font-size: 16px;
+			padding-top:10px;
+			padding-bottom:15px;
+			border-bottom: #333333 1px solid;
+		}
+
+
+		.clearfloat {
+			display: block;
+		}
+
+		.clearfloat::after {
+			content: ".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+		
+		.dbitemtitle {
+			font-weight:bold;
+			font-size:24px;
+		}
+
+		.itemheader {
+			font-weight:bold;
+		}
+
+	</style>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+	<!-- JS file -->
+	<script src="/resources/easyautocomplete/jquery.easy-autocomplete.js"></script> 
+
+	<!-- CSS file -->
+	<link rel="stylesheet" href="/resources/easyautocomplete/easy-autocomplete.min.css"> 
+
+	<!-- Additional CSS Themes file - not required-->
+	<link rel="stylesheet" href="/resources/easyautocomplete/easy-autocomplete.themes.min.css"> 
+
+
+</head>
+<body>
+
+
+	<div class="clearfload" id="wrapper">
+		<div class="clearfloat" id="header">
+		EarthChem Vocabulary Services
+		</div>
+	
+		<div style="border-bottom:#333333 1px solid; padding-bottom:5px;">
+		The EarthChem Vocabulary Services are a set of RESTful web services intended to simplify the process of maintaining controlled vocabularies within the IEDA community.
+		All data currently comes from a dev instance of the EarthChem ODM2 database and is JSKOS encoded to easily implement within client-side applications.<br><br>
+		Below are details for each of the services currently enabled:
+		</div>
+	
+		<div class="dbitem">
+			<div class="dbitemtitle">Grain Type Service:</div>
+			<table>
+				<tr><td><div class="itemheader">Endpoint URI:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/grainType" target="_blank">http://vocab.earthchemportal.org/vocabulary/grainType</a></td></tr>
+				<tr><td><div class="itemheader">Example Detail URI:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/grainType/gtyp543" target="_blank">http://vocab.earthchemportal.org/vocabulary/grainType/gtyp543</a></td></tr>
+				<tr><td><div class="itemheader">Example Query:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/grainType?label=lut" target="_blank">http://vocab.earthchemportal.org/vocabulary/grainType?label=lut</a></td></tr>
+				<tr><td><div class="itemheader">AutoComplete Demo:</div></td><td><a href="http://vocab.earthchemportal.org/demos/graintype" target="_blank">http://vocab.earthchemportal.org/demos/graintype</a></td></tr>
+			</table>
+		</div>
+	
+		<div class="dbitem">
+			<div class="dbitemtitle">Material Service:</div>
+			<table>
+				<tr><td><div class="itemheader">Endpoint URI:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/material" target="_blank">http://vocab.earthchemportal.org/vocabulary/material</a></td></tr>
+				<tr><td><div class="itemheader">Example Detail URI:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/material/mat108" target="_blank">http://vocab.earthchemportal.org/vocabulary/material/mat108</a></td></tr>
+				<tr><td><div class="itemheader">Example Query:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/material?label=ecc" target="_blank">http://vocab.earthchemportal.org/vocabulary/material?label=ecc</a></td></tr>
+				<tr><td><div class="itemheader">AutoComplete Demo:</div></td><td><a href="http://vocab.earthchemportal.org/demos/material" target="_blank">http://vocab.earthchemportal.org/demos/material</a></td></tr>
+			</table>
+		</div>
+	
+		<div class="dbitem">
+			<div class="dbitemtitle">Mineral Service:</div>
+			<table>
+				<tr><td><div class="itemheader">Endpoint URI:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/mineral" target="_blank">http://vocab.earthchemportal.org/vocabulary/mineral</a></td></tr>
+				<tr><td><div class="itemheader">Example Detail URI:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/mineral/min293" target="_blank">http://vocab.earthchemportal.org/vocabulary/mineral/min293</a></td></tr>
+				<tr><td><div class="itemheader">Example Query:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/mineral?label=zir" target="_blank">http://vocab.earthchemportal.org/vocabulary/mineral?label=zir</a></td></tr>
+				<tr><td><div class="itemheader">AutoComplete Demo:</div></td><td><a href="http://vocab.earthchemportal.org/demos/mineral" target="_blank">http://vocab.earthchemportal.org/demos/mineral</a></td></tr>
+			</table>
+		</div>
+	
+		<div class="dbitem">
+			<div class="dbitemtitle">Person Service:</div>
+			<table>
+				<tr><td><div class="itemheader">Endpoint URI:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/person" target="_blank">http://vocab.earthchemportal.org/vocabulary/person</a></td></tr>
+				<tr><td><div class="itemheader">Example Detail URI:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/person/per3951" target="_blank">http://vocab.earthchemportal.org/vocabulary/person/per3951</a></td></tr>
+				<tr><td><div class="itemheader">Example Query:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/person?label=alk" target="_blank">http://vocab.earthchemportal.org/vocabulary/person?label=alk</a></td></tr>
+				<tr><td><div class="itemheader">AutoComplete Demo:</div></td><td><a href="http://vocab.earthchemportal.org/demos/person" target="_blank">http://vocab.earthchemportal.org/demos/person</a></td></tr>
+			</table>
+		</div>
+	
+		<div class="dbitem">
+			<div class="dbitemtitle">Rock Class Service:</div>
+			<table>
+				<tr><td><div class="itemheader">Endpoint URI:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/rockClass" target="_blank">http://vocab.earthchemportal.org/vocabulary/rockClass</a></td></tr>
+				<tr><td><div class="itemheader">Example Detail URI:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/rockClass/rcla216" target="_blank">http://vocab.earthchemportal.org/vocabulary/rockClass/rcla216</a></td></tr>
+				<tr><td><div class="itemheader">Example Query:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/rockClass?label=gite" target="_blank">http://vocab.earthchemportal.org/vocabulary/rockClass?label=gite</a></td></tr>
+				<tr><td><div class="itemheader">AutoComplete Demo:</div></td><td><a href="http://vocab.earthchemportal.org/demos/rockclass" target="_blank">http://vocab.earthchemportal.org/demos/rockclass</a></td></tr>
+			</table>
+		</div>
+	
+		<div class="dbitem">
+			<div class="dbitemtitle">Rock Type Service:</div>
+			<table>
+				<tr><td><div class="itemheader">Endpoint URI:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/rockType" target="_blank">http://vocab.earthchemportal.org/vocabulary/rockType</a></td></tr>
+				<tr><td><div class="itemheader">Example Detail URI:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/rockType/rtyp503" target="_blank">http://vocab.earthchemportal.org/vocabulary/rockType/rtyp503</a></td></tr>
+				<tr><td><div class="itemheader">Example Query:</div></td><td><a href="http://vocab.earthchemportal.org/vocabulary/rockType?label=volc" target="_blank">http://vocab.earthchemportal.org/vocabulary/rockType?label=volc</a></td></tr>
+				<tr><td><div class="itemheader">AutoComplete Demo:</div></td><td><a href="http://vocab.earthchemportal.org/demos/rocktype" target="_blank">http://vocab.earthchemportal.org/demos/rocktype</a></td></tr>
+			</table>
+		</div>
+	
+
+		<div style="padding-top:200px;"/>
+
+	</div>
+
+</body>
+</html>
