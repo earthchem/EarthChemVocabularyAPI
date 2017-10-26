@@ -13,6 +13,8 @@ var updateRightSide = function() {
 	
 	$('#searchbox').val('');
 	
+	showAll();
+	
 	if(selectedObject!=""){
 	
 		$('#newbutton').show();
@@ -86,6 +88,37 @@ var hideSaveButton = function() {
 	$('#savebutton').html('<button class="menubuttonoff"><span>SAVE</span></button>');
 }
 
+var showAll = function() {
+	
+	var selectedObject = $('#objselect').find(":selected").val();
+
+	if(selectedObject!=""){
+
+		url = vocabRestEndpoint+selectedObject;
+
+	}
+	
+	if(url!=""){
+		var thishtml = "";
+		$.getJSON(url, function(data){
+			if(data.resultcount>0){
+				_.each(data.results, function(res){
+					
+					thishtml=thishtml+'<div class="searchItem" onclick="showStatic(\''+res.uri+'\');">'+res.prefLabel.en+'</div>';
+
+				});
+			}
+			
+			if(thishtml!=""){
+				thishtml='<fieldset style="border: 1px solid #CDCDCD; padding: 4px; padding-bottom:0px; margin: 8px 0"><legend><strong>Complete List:</strong></legend>'+thishtml+'</fieldset>';
+			}
+
+			$("#searchlist").html(thishtml);
+		});
+	}
+
+}
+
 var doSearch = function() {
 
 	var val = $('#searchbox').val();
@@ -122,7 +155,7 @@ var doSearch = function() {
 	
 	}else{
 	
-		$("#searchlist").html("");
+		showAll();
 	
 	}
 
@@ -391,7 +424,13 @@ var doDeprecate = function() {
 					url: uri,
 					contentType: "application/json",
 					success: function (msg) {
-						doSearch();
+						
+						var val = $('#searchbox').val();
+						if(val!=""){
+							doSearch();
+						}else{
+							showAll();
+						}
 						$("#successmessage").html(vocablabel+' deprecated Successfully.');
 						$("#successmessage").fadeIn();
 						$("#successmessage").fadeOut(2000);

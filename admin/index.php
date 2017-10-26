@@ -50,7 +50,7 @@ function dumpVar($var){
 
 					<div id="leftBarContent">
 						
-						<!--<button onclick="testbutton();">Test Here</button>-->
+						<!--<button onclick="showAll();">Test</button>-->
 						
 						<div class="selectlabel">Vocabulary:</div>
 
