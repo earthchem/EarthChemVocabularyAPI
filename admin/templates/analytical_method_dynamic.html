@@ -1,0 +1,60 @@
+		<div class="templateHeader">Analytical Method</div>
+		<div class="templateID">Method ID: <input type="text" id="analytical_methodid" value="" size="6" readonly="readonly"></div>
+		
+		<table>
+			<tr>
+				<td>Method Name:</td>
+				<td>
+					<input type="text" id="method_name" size="59" />
+				</td>
+			</tr>
+			<tr>
+				<td>Method Type:</td>
+				<td>
+					<select id="method_type_num">
+						<option value="">select...</option>
+
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Method Short Name:</td>
+				<td>
+					<input id="method_short_name" size="56"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Lab Name:</td>
+				<td>
+					<input id="method_lab" size="56">
+				</td>
+				<td>
+					<a class="addnewlink" href="javascript:showNewOrg();">Add New Lab to Database</a>
+				</td>
+			</tr>
+			<tr>
+				<td>Description:</td>
+				<td>
+					<textarea id="method_description" cols="50" rows="7"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Link for More Information:</td>
+				<td>
+					<input id="method_link" size="56"/>
+				</td>
+			</tr>
+
+			</table>
+		</div>
+
+
+		<div id="methodresultsdiv">
+		
+		</div>
+
+		<div style="display:none;">
+			<input id="method_lab_hidden"/>
+		</div>
+
+		<script src="/resources/autocomplete_setups.js"></script>

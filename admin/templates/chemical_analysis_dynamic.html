@@ -1,0 +1,86 @@
+
+		<div class="templateHeader">Chemical Analysis Event</div>
+		<div class="templateID">Chemical Analysis ID: <input type="text" id="chemical_analysisid" value="" size="6" readonly="readonly"></div>
+		
+		<table>
+			<tr>
+				<td>Analysis Run Name:</td>
+				<td>
+					<input type="text" id="chemical_analysis_action_name" size="59" />
+				</td>
+			</tr>
+			<tr>
+				<td>Analysis Type:</td>
+				<td>
+					<select id="chemical_analysis_type_num">
+						<option value="">select...</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Method Name:</td>
+				<td>
+					<input id="chemical_analysis_method" size="56"/>
+				</td>
+				<td>
+					<a class="addnewlink" href="javascript:showNewMeth();">Add New Method to Database</a>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Lab Name:</td>
+				<td>
+					<input id="chemical_analysis_lab" size="56"/>
+				</td>
+				<td>
+					<a class="addnewlink" href="javascript:showNewOrg();">Add New Lab to Database</a>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Equipment Used:</td>
+				<td>
+					<input id="chemical_analysis_equipment" size="56"/>
+				</td>
+				<td>
+					<a class="addnewlink" href="javascript:showNewEquip();">Add New Equipment to Database</a>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Analyst/Operator:</td>
+				<td>
+					<input id="chemical_analysis_analyst" size="56"/>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Description:</td>
+				<td>
+					<textarea id="chemical_analysis_description" cols="50" rows="7"></textarea>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Date/Time:</td>
+				<td>Start: <input type="text" id="chemical_analysis_begin_date" size="10">&nbsp;&nbsp;&nbsp;End: <input type="text" id="chemical_analysis_end_date" size="10"></td>
+			</tr>
+
+			</table>
+
+
+		<div id="chemical_analysisresultsdiv">
+		
+		</div>
+
+		<div style="display:none;">
+			<br><br><br>
+			chemical_analysis_method_hidden: <input id="chemical_analysis_method_hidden"/><br>
+			chemical_analysis_lab_hidden: <input id="chemical_analysis_lab_hidden"/><br>
+			chemical_analysis_equipment_hidden: <input id="chemical_analysis_equipment_hidden"/><br>
+			chemical_analysis_analyst_hidden: <input id="chemical_analysis_analyst_hidden"/><br>
+
+		</div>
+
+		<script src="/resources/autocomplete_setups.js"></script>
+

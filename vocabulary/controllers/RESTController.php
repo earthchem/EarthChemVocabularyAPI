@@ -22,15 +22,17 @@ class RESTController
  		print_r($var);
  		echo "</pre>";
  	}
-
-
+ 	
+ 	function setUri($uri){
+ 		$this->baseUri=$uri;
+ 	}
 
 	public function jsonObject($controller, $num, $preflabel, $altlabel, $definition, $prefix){
 		
 		if(!$altlabel)$altlabel=$preflabel;
 		
 		$thisobj = [];
-		$thisobj['uri']="http://vocab.earthchemportal.org/vocabulary/$controller/$prefix$num";
+		$thisobj['uri']=$this->baseUri."$controller/$prefix$num";
 		$thisobj['prefLabel']['en']=$preflabel;
 		$thisobj['altLabel']['en']=$altlabel;
 		$thisobj['definition']['en']=$definition;

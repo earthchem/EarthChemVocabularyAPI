@@ -1,0 +1,115 @@
+
+
+
+		<div class="templateHeader">Expedition</div>
+		<div class="templateID">Expedition ID: <input type="text" id="expeditionid" value="" size="6" readonly="readonly"></div>
+		
+		<table>
+			<tr>
+				<td>Expedition Name:</td>
+				<td>
+					<input type="text" id="expedition_name" size="59" />
+				</td>
+			</tr>
+			<tr>
+				<td>Expedition Type:</td>
+				<td>
+					<select id="expedition_type_num">
+						<option value="">select...</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Sponsor Organization:</td>
+				<td>
+					<input id="expedition_sponsor_organization" size="56"/>
+				</td>
+				<td>
+					<a class="addnewlink" href="javascript:showNewOrg();">Add New Organization to Database</a>
+				</td>
+			</tr>
+			<tr>
+				<td>Description:</td>
+				<td>
+					<textarea id="expedition_description" cols="50" rows="7"></textarea>
+				</td>
+			</tr>
+
+
+<!---
+		</table>
+		
+		<div id="showDetailsButtonDiv">
+			<button class="greenbutton" onClick="showObjectDetails();"><span>Show&nbsp;Details</span></button>
+		</div>
+		
+		<div id="hideDetailsButtonDiv" style="display:none;">
+			<button class="redbutton" onClick="hideObjectDetails();"><span>Hide&nbsp;Details</span></button>
+		</div>
+		
+		<div id="objectdetails">
+			
+			<table>
+--->
+
+				<tr>
+					<td>Dates:</td>
+					<td>Begin Date: <input type="text" id="expedition_begin_date" size="10">&nbsp;&nbsp;&nbsp;End Date: <input type="text" id="expedition_end_date" size="10"></td>
+				</tr>
+				<tr>
+					<td valign="top">Equipment:</td>
+					<td>
+						<input id="expedition_equipment1" size="59"/>
+						<input id="expedition_equipment2" size="59" style="display:none;"/>
+						<input id="expedition_equipment3" size="59" style="display:none;"/>
+						<input id="expedition_equipment4" size="59" style="display:none;"/>
+						<input id="expedition_equipment5" size="59" style="display:none;"/>
+						<input id="expedition_equipment6" size="59" style="display:none;"/>
+						<input id="expedition_equipment7" size="59" style="display:none;"/>
+						<input id="expedition_equipment8" size="59" style="display:none;"/>
+						<input id="expedition_equipment9" size="59" style="display:none;"/>
+						<img src="/resources/images/plus.png" style="cursor:pointer;" onClick="addEquipment();">
+					</td>
+				<td valign="top">
+					<a class="addnewlink" href="javascript:showNewEquip();">Add New Equipment to Database</a>
+				</td>
+				</tr>
+				<tr>
+					<td>Identifier:</td>
+					<td><input type="text" id="expedition_identifier" size="59"></td>
+				</tr>
+				<tr>
+					<td valign="top">Alternate Names:</td>
+					<td>
+						<input type="text" id="expedition_alternate_names" size="59"><br>
+						<div class="directions">(Comma-separated list of alternative expedition names.)</div>
+					</td>
+				</tr>
+
+			</table>
+		<!---
+		</div>
+		--->
+
+		<div id="resultsdiv">
+		
+		</div>
+
+		<div style="display:none;">
+			organization: <input id="expedition_hidden_sponsor_organization" style="display:block;"/><br>
+			<input id="expedition_hidden_equipment1"/><br>
+			<input id="expedition_hidden_equipment2"/><br>
+			<input id="expedition_hidden_equipment3"/><br>
+			<input id="expedition_hidden_equipment4"/><br>
+			<input id="expedition_hidden_equipment5"/><br>
+			<input id="expedition_hidden_equipment6"/><br>
+			<input id="expedition_hidden_equipment7"/><br>
+			<input id="expedition_hidden_equipment8"/><br>
+			<input id="expedition_hidden_equipment9"/>
+		</div>
+
+		<script src="/resources/autocomplete_setups.js"></script>
+
+
+
+

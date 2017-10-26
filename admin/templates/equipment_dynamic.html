@@ -1,0 +1,58 @@
+		<div class="templateHeader">Equipment</div>
+		<div class="templateID">Equipment ID: <input type="text" id="equipmentid" value="" size="6" readonly="readonly"></div>
+		
+		<table>
+			<tr>
+				<td>Equipment Name:</td>
+				<td>
+					<input type="text" id="equipment_name" size="59" />
+				</td>
+			</tr>
+			<tr>
+				<td>Equipment Type:</td>
+				<td>
+					<select id="equipment_type_num">
+						<option value="">select...</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Description:</td>
+				<td>
+					<textarea id="equipment_description" cols="50" rows="7"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Model ID:</td>
+				<td><input type="text" id="model_id" size="59"></td>
+			</tr>
+			<tr>
+				<td>Serial Number:</td>
+				<td><input type="text" id="equipment_serial_num" size="59"></td>
+			</tr>
+			<tr>
+				<td>Manufacturer:</td>
+				<td><input type="text" id="equipment_vendor_id" size="59"></td>
+			</tr>
+			<tr>
+				<td>Purchase Date:</td>
+				<td><input type="text" id="equipment_purchase_date" size="59"></td>
+			</tr>
+			<tr>
+				<td>URL for Photo:</td>
+				<td><input type="text" id="equipment_photo_file_name" size="59"></td>
+			</tr>
+			<tr>
+				<td>Owner:</td>
+				<td><input type="text" id="equipment_owner_id" size="59"></td>
+			</tr>
+		</table>
+		
+		<div id="showEquipmentButtonDiv" style="display:none;">
+			<button class="greenbutton" onClick="showEquipmentDetails();"><span>Show&nbsp;Details</span></button>
+		</div>
+		
+		<div id="hideEquipmentButtonDiv" style="display:none;">
+			<button class="redbutton" onClick="hideEquipmentDetails();"><span>Hide&nbsp;Details</span></button>
+		</div>
+		

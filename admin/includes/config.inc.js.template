@@ -1,0 +1,3 @@
+//config values for vocab admin interface
+
+var vocabRestEndpoint="http://vocab.earthchemportal.org/vocabulary/";

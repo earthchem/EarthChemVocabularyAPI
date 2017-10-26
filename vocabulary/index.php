@@ -48,6 +48,7 @@ if($showcontroller==""){$showcontroller="null";}
 if (class_exists($controller_name)) {
     $controller = new $controller_name();
     $controller->setDB($db);
+    $controller->setUri($baseuri);
     $action_name = strtolower($request->verb) . 'Action';
     $result = $controller->$action_name($request);
 }else{
