@@ -341,6 +341,7 @@ var doSave = function() {
 					data: saveJSON,
 					success: function (msg) {
 						showStatic(uri);
+						refreshList();
 						$("#successmessage").html(vocablabel+' Saved Successfully.');
 						$("#successmessage").fadeIn();
 						$("#successmessage").fadeOut(2000);
@@ -425,12 +426,8 @@ var doDeprecate = function() {
 					contentType: "application/json",
 					success: function (msg) {
 						
-						var val = $('#searchbox').val();
-						if(val!=""){
-							doSearch();
-						}else{
-							showAll();
-						}
+						refreshList();
+						
 						$("#successmessage").html(vocablabel+' deprecated Successfully.');
 						$("#successmessage").fadeIn();
 						$("#successmessage").fadeOut(2000);
@@ -453,6 +450,15 @@ var doDeprecate = function() {
 
 	}
 
+}
+
+var refreshList = function(){
+	var val = $('#searchbox').val();
+	if(val!=""){
+		doSearch();
+	}else{
+		showAll();
+	}
 }
 
 var checkForm = function() {
