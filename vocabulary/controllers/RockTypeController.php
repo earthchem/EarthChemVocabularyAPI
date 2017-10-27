@@ -87,7 +87,7 @@ class RocktypeController extends RESTController
 					$altlabel = $row->taxonomic_classifier_common_name;
 					$definition = $row->taxonomic_classifier_description;
 					
-					$data['results'][]=$this->jsonObject("grainType", $num, $preflabel, $altlabel, $definition, "rtyp");
+					$data['results'][]=$this->jsonObject("rockType", $num, $preflabel, $altlabel, $definition, "rtyp");
 
 				}
 
