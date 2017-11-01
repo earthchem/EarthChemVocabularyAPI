@@ -616,7 +616,7 @@ var getVocabLabel = function(vocabName){
 killAltLabels = ["chemicalanalysistype","equipmenttype","expeditiontype","methodtype","organizationtype","state","uncertaintytype"];
 
 //create list of vocabs to leave off description
-killDescriptions = ["country","state"];
+killDescriptions = ["country","state","material"];
 
 
 

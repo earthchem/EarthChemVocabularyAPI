@@ -20,13 +20,12 @@ class MaterialController extends RESTController
 			$searchid = (int) str_replace("mat","",$id);
 
 			if(is_int($searchid)){
-				$row = $this->db->get_row("select * from earthchem.taxonomic_classifier where taxonomic_classifier_type_cv='Material' and taxonomic_classifier_num=$searchid and status = 1");
-				if($row->taxonomic_classifier_num){
-					$num = $row->taxonomic_classifier_num;
-					$preflabel = $row->taxonomic_classifier_name;
-					$altlabel = $row->taxonomic_classifier_common_name;
-					$definition = $row->taxonomic_classifier_description;
-			
+				$row = $this->db->get_row("select * from earthchem.material where material_num=$searchid and status = 1");
+				if($row->material_num){
+					$num = $row->material_num;
+					$preflabel = $row->material_code;
+					$altlabel = $row->material_name;
+
 					$data=$this->jsonObject("material", $num, $preflabel, $altlabel, $definition, "mat");
 					
 				}else{
@@ -47,7 +46,7 @@ class MaterialController extends RESTController
 
 					$label = strtolower($_GET['label']);
 					
-					$rows = $this->db->get_results("select * from earthchem.taxonomic_classifier where taxonomic_classifier_type_cv='Material' and lower(taxonomic_classifier_name) like '%$label%' and status = 1
+					$rows = $this->db->get_results("select * from earthchem.material where (lower(material_code) like '%$label%' or lower(material_code) like '%$label%') and status = 1
 													
 													");
 					$data['resultcount']=count($rows);
@@ -56,10 +55,9 @@ class MaterialController extends RESTController
 						$data['resultcount']=count($rows);
 						foreach($rows as $row){
 							
-							$num = $row->taxonomic_classifier_num;
-							$preflabel = $row->taxonomic_classifier_name;
-							$altlabel = $row->taxonomic_classifier_common_name;
-							$definition = $row->taxonomic_classifier_description;
+							$num = $row->material_num;
+							$preflabel = $row->material_code;
+							$altlabel = $row->material_name;
 					
 							$data['results'][]=$this->jsonObject("material", $num, $preflabel, $altlabel, $definition, "mat");
 							
@@ -79,14 +77,13 @@ class MaterialController extends RESTController
         	}else{
 
 				//list all person entries here
-				$rows = $this->db->get_results("select * from earthchem.taxonomic_classifier where taxonomic_classifier_type_cv='Material' and status = 1 order by taxonomic_classifier_name");
+				$rows = $this->db->get_results("select * from earthchem.material where status = 1 order by material_code");
 				$data['resultcount']=count($rows);
 				foreach($rows as $row){
 					
-					$num = $row->taxonomic_classifier_num;
-					$preflabel = $row->taxonomic_classifier_name;
-					$altlabel = $row->taxonomic_classifier_common_name;
-					$definition = $row->taxonomic_classifier_description;
+					$num = $row->material_num;
+					$preflabel = $row->material_code;
+					$altlabel = $row->material_name;
 			
 					$data['results'][]=$this->jsonObject("material", $num, $preflabel, $altlabel, $definition, "mat");
 
@@ -108,17 +105,17 @@ class MaterialController extends RESTController
 			$searchid = (int) str_replace("mat","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.taxonomic_classifier where taxonomic_classifier_num = $searchid");
+				$row = $this->db->get_row("select * from earthchem.material where material_num = $searchid");
 
-				if($row->taxonomic_classifier_num){
+				if($row->material_num){
 
 					$id = (int)$request->url_elements[2];
 
 
 					$this->db->query("
-										update earthchem.taxonomic_classifier set
+										update earthchem.material_num set
 										status = 0
-										where taxonomic_classifier_num = $searchid
+										where material_num = $searchid
 									");
 
 					$data['Success']="true";
@@ -153,32 +150,33 @@ class MaterialController extends RESTController
 			$p = $request->parameters;
 
 			$preflabel = $p['prefLabel']->en;
+			$altlabel = $p['altLabel']->en;
 
 			if($preflabel == ""){
 			
 				header("Bad Request", true, 400);
 				$data["Error"] = "Preferred Label must be provided.";
+			}elseif($altlabel == ""){
+			
+				header("Bad Request", true, 400);
+				$data["Error"] = "Alternate Label must be provided.";
 			}
 			else{
 			
-				$altlabel = $p['altLabel']->en;
+
 				$description = $p['definition']->en;
 				
 				$this->db->query("
-								insert into earthchem.taxonomic_classifier (
-														taxonomic_classifier_name,
-														taxonomic_classifier_common_name,
-														taxonomic_classifier_description,
-														taxonomic_classifier_type_cv
+								insert into earthchem.material (
+														material_code,
+														material_name
 														) values (
 														'$preflabel',
-														'$altlabel',
-														'$description',
-														'Material'
+														'$altlabel'
 														)
 				");
 
-				$returnpkey = $this->db->get_var("select currval('earthchem.taxonomic_classifier_taxonomic_classifier_num_seq');");
+				$returnpkey = $this->db->get_var("select currval('earthchem.material_material_num_seq');");
 				$returnuri = $this->baseUri."material/".$returnpkey;
 				$data=$p;
 				$data['uri']=$returnuri;
@@ -200,32 +198,35 @@ class MaterialController extends RESTController
 			$searchid = (int) str_replace("mat","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.taxonomic_classifier where taxonomic_classifier_num = $searchid");
+				$row = $this->db->get_row("select * from earthchem.material where material_num = $searchid");
 
-				if($row->taxonomic_classifier_num){
+				if($row->material_num){
 
 					$p = $request->parameters;
 						
 					$preflabel = $p['prefLabel']->en;
+					$altlabel = $p['altLabel']->en;
 
 					if($preflabel == ""){
 			
 						header("Bad Request", true, 400);
 						$data["Error"] = "Preferred Label must be provided.";
+					}elseif($altlabel == ""){
+			
+						header("Bad Request", true, 400);
+						$data["Error"] = "Alternate Label must be provided.";
 					}
 					else{
-			
-						$altlabel = $p['altLabel']->en;
+
 						$description = $p['definition']->en;
 				
 						$this->db->query("
-										update earthchem.taxonomic_classifier
+										update earthchem.material
 										set
-										taxonomic_classifier_name='$preflabel',
-										taxonomic_classifier_common_name='$altlabel',
-										taxonomic_classifier_description='$description'
+										material_code='$preflabel',
+										material_name='$altlabel'
 										where
-										taxonomic_classifier_num = $searchid;
+										material_num = $searchid;
 						");
 			
 					}
