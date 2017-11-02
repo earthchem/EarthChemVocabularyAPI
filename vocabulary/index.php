@@ -56,29 +56,20 @@ if (class_exists($controller_name)) {
 	if($showcontroller=="null"){//top-level
 	
 		//show list of vocabularies
-		$result[0]['uri']="http://vocab.earthchemportal.org/vocabulary/grainType";
-		$result[0]['prefLabel']['en']="Grain Type";
-		$result[0]['definition']['en']="Vocabulary containing grain types.";
+		$result[1]['uri']="http://vocab.earthchemportal.org/vocabulary/chemicalAnlysisType"; $result[1]['prefLabel']['en']="Chemical Analysis Type"; $result[1]['definition']['en']="Vocabulary containing Chemical Analysis Type entries.";
+		$result[2]['uri']="http://vocab.earthchemportal.org/vocabulary/country"; $result[2]['prefLabel']['en']="Country"; $result[2]['definition']['en']="Vocabulary containing Country entries.";
+		$result[3]['uri']="http://vocab.earthchemportal.org/vocabulary/equipmentType"; $result[3]['prefLabel']['en']="Equipment Type"; $result[3]['definition']['en']="Vocabulary containing Equipment Type entries.";
+		$result[4]['uri']="http://vocab.earthchemportal.org/vocabulary/expeditionType"; $result[4]['prefLabel']['en']="Expedition Type"; $result[4]['definition']['en']="Vocabulary containing Expedition Type entries.";
+		$result[5]['uri']="http://vocab.earthchemportal.org/vocabulary/grainType"; $result[5]['prefLabel']['en']="Grain Type"; $result[5]['definition']['en']="Vocabulary containing Grain Type entries.";
+		$result[6]['uri']="http://vocab.earthchemportal.org/vocabulary/material"; $result[6]['prefLabel']['en']="Material"; $result[6]['definition']['en']="Vocabulary containing Material entries.";
+		$result[7]['uri']="http://vocab.earthchemportal.org/vocabulary/methodType"; $result[7]['prefLabel']['en']="Method Type"; $result[7]['definition']['en']="Vocabulary containing Method Type entries.";
+		$result[8]['uri']="http://vocab.earthchemportal.org/vocabulary/mineral"; $result[8]['prefLabel']['en']="Mineral"; $result[8]['definition']['en']="Vocabulary containing Mineral entries.";
+		$result[9]['uri']="http://vocab.earthchemportal.org/vocabulary/organizationType"; $result[9]['prefLabel']['en']="Organization Type"; $result[9]['definition']['en']="Vocabulary containing Organization Type entries.";
+		$result[10]['uri']="http://vocab.earthchemportal.org/vocabulary/rockClass"; $result[10]['prefLabel']['en']="Rock Class"; $result[10]['definition']['en']="Vocabulary containing Rock Class entries.";
+		$result[11]['uri']="http://vocab.earthchemportal.org/vocabulary/rockType"; $result[11]['prefLabel']['en']="Rock Type"; $result[11]['definition']['en']="Vocabulary containing Rock Type entries.";
+		$result[12]['uri']="http://vocab.earthchemportal.org/vocabulary/state"; $result[12]['prefLabel']['en']="State"; $result[12]['definition']['en']="Vocabulary containing State entries.";
+		$result[13]['uri']="http://vocab.earthchemportal.org/vocabulary/uncertaintyType"; $result[13]['prefLabel']['en']="Uncertainty Type"; $result[13]['definition']['en']="Vocabulary containing Uncertainty Type entries.";
 
-		$result[1]['uri']="http://vocab.earthchemportal.org/vocabulary/material";
-		$result[1]['prefLabel']['en']="Material";
-		$result[1]['definition']['en']="Vocabulary containing material names.";
-
-		$result[2]['uri']="http://vocab.earthchemportal.org/vocabulary/mineral";
-		$result[2]['prefLabel']['en']="Mineral";
-		$result[2]['definition']['en']="Vocabulary containing mineral names.";
-
-		$result[3]['uri']="http://vocab.earthchemportal.org/vocabulary/person";
-		$result[3]['prefLabel']['en']="Person";
-		$result[3]['definition']['en']="Vocabulary containing entries for known people.";
-
-		$result[4]['uri']="http://vocab.earthchemportal.org/vocabulary/rockClass";
-		$result[4]['prefLabel']['en']="Rock Classification";
-		$result[4]['definition']['en']="Vocabulary containing rock classifications.";
-
-		$result[5]['uri']="http://vocab.earthchemportal.org/vocabulary/rockType";
-		$result[5]['prefLabel']['en']="Rock Type";
-		$result[5]['definition']['en']="Vocabulary containing rock types.";
 
 	}else{
 
