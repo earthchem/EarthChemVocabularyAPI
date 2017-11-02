@@ -20,7 +20,7 @@ class StateController extends RESTController
 			$searchid = (int) str_replace("state","",$id);
 
 			if(is_int($searchid)){
-				$row = $this->db->get_row("select * from earthchem.state where state_num=$searchid and status = 1");
+				$row = $this->db->get_row("select * from state where state_num=$searchid and status = 1");
 				if($row->state_num){
 						$num = $row->state_num;
 						$preflabel = $row->state_name;
@@ -46,7 +46,7 @@ class StateController extends RESTController
 
 					$label = strtolower($_GET['label']);
 					
-					$rows = $this->db->get_results("select * from earthchem.state where lower(state_name) like '%$label%' and status = 1 order by state_name;
+					$rows = $this->db->get_results("select * from state where lower(state_name) like '%$label%' and status = 1 order by state_name;
 													
 													");
 					$data['resultcount']=count($rows);
@@ -78,7 +78,7 @@ class StateController extends RESTController
         	}else{
 
 				//list all action_type entries here
-				$rows = $this->db->get_results("select * from earthchem.state where state_name != '' and status = 1 order by state_name;");
+				$rows = $this->db->get_results("select * from state where state_name != '' and status = 1 order by state_name;");
 				$data['resultcount']=count($rows);
 				foreach($rows as $row){
 					
@@ -107,7 +107,7 @@ class StateController extends RESTController
 			$searchid = (int) str_replace("state","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.state where state_num = $searchid");
+				$row = $this->db->get_row("select * from state where state_num = $searchid");
 
 				if($row->state_num){
 
@@ -115,7 +115,7 @@ class StateController extends RESTController
 
 
 					$this->db->query("
-										update earthchem.state set
+										update state set
 										status = 0
 										where state_num = $searchid
 									");
@@ -163,7 +163,7 @@ class StateController extends RESTController
 				$description = $p['definition']->en;
 				
 				$this->db->query("
-								insert into earthchem.state (
+								insert into state (
 														state_name,
 														country_num
 														) values (
@@ -172,7 +172,7 @@ class StateController extends RESTController
 														)
 				");
 
-				$returnpkey = $this->db->get_var("select currval('earthchem.state_state_num_seq');");
+				$returnpkey = $this->db->get_var("select currval('state_state_num_seq');");
 				$returnuri = $this->baseUri."state/".$returnpkey;
 				$data=$p;
 				$data['uri']=$returnuri;
@@ -194,7 +194,7 @@ class StateController extends RESTController
 			$searchid = (int) str_replace("state","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.state where state_num = $searchid");
+				$row = $this->db->get_row("select * from state where state_num = $searchid");
 
 				if($row->state_num){
 
@@ -210,7 +210,7 @@ class StateController extends RESTController
 					else{
 				
 						$this->db->query("
-										update earthchem.state
+										update state
 										set
 										state_name='$preflabel'
 										where

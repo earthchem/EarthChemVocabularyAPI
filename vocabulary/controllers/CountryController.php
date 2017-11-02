@@ -20,7 +20,7 @@ class countryController extends RESTController
 			$searchid = (int) str_replace("country","",$id);
 
 			if(is_int($searchid)){
-				$row = $this->db->get_row("select * from earthchem.country where country_num=$searchid and status = 1");
+				$row = $this->db->get_row("select * from country where country_num=$searchid and status = 1");
 				if($row->country_num){
 						$num = $row->country_num;
 						$preflabel = $row->country_name;
@@ -46,7 +46,7 @@ class countryController extends RESTController
 
 					$label = strtolower($_GET['label']);
 					
-					$rows = $this->db->get_results("select * from earthchem.country where lower(country_name) like '%$label%' and status = 1 order by country_name;
+					$rows = $this->db->get_results("select * from country where lower(country_name) like '%$label%' and status = 1 order by country_name;
 													
 													");
 					$data['resultcount']=count($rows);
@@ -78,7 +78,7 @@ class countryController extends RESTController
         	}else{
 
 				//list all action_type entries here
-				$rows = $this->db->get_results("select * from earthchem.country where country_name != '' and status = 1 order by country_name;");
+				$rows = $this->db->get_results("select * from country where country_name != '' and status = 1 order by country_name;");
 				$data['resultcount']=count($rows);
 				foreach($rows as $row){
 					
@@ -107,7 +107,7 @@ class countryController extends RESTController
 			$searchid = (int) str_replace("country","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.country where country_num = $searchid");
+				$row = $this->db->get_row("select * from country where country_num = $searchid");
 
 				if($row->country_num){
 
@@ -115,7 +115,7 @@ class countryController extends RESTController
 
 
 					$this->db->query("
-										update earthchem.country set
+										update country set
 										status = 0
 										where country_num = $searchid
 									");
@@ -163,7 +163,7 @@ class countryController extends RESTController
 				$altlabel = $p['altLabel']->en;
 				
 				$this->db->query("
-								insert into earthchem.country (
+								insert into country (
 														country_name,
 														country_code,
 														country_abbrev,
@@ -176,7 +176,7 @@ class countryController extends RESTController
 														)
 				");
 				
-				$returnpkey = $this->db->get_var("select currval('earthchem.country_country_num_seq');");
+				$returnpkey = $this->db->get_var("select currval('country_country_num_seq');");
 				$returnuri = $this->baseUri."country/".$returnpkey;
 				$data=$p;
 				$data['uri']=$returnuri;
@@ -200,7 +200,7 @@ class countryController extends RESTController
 			$searchid = (int) str_replace("country","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.country where country_num = $searchid");
+				$row = $this->db->get_row("select * from country where country_num = $searchid");
 
 				if($row->country_num){
 
@@ -220,7 +220,7 @@ class countryController extends RESTController
 						$altlabel = $p['altLabel']->en;
 				
 						$this->db->query("
-										update earthchem.country
+										update country
 										set
 										country_name='$preflabel',
 										country_code='',

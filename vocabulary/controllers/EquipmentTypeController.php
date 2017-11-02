@@ -20,7 +20,7 @@ class EquipmentTypeController extends RESTController
 			$searchid = (int) str_replace("eqtype","",$id);
 
 			if(is_int($searchid)){
-				$row = $this->db->get_row("select * from earthchem.equipment_type where equipment_type_num=$searchid and status = 1");
+				$row = $this->db->get_row("select * from equipment_type where equipment_type_num=$searchid and status = 1");
 				if($row->equipment_type_num){
 						$num = $row->equipment_type_num;
 						$preflabel = $row->equipment_type_name;
@@ -46,7 +46,7 @@ class EquipmentTypeController extends RESTController
 
 					$label = strtolower($_GET['label']);
 					
-					$rows = $this->db->get_results("select * from earthchem.equipment_type where lower(equipment_type_name) like '%$label%' and status = 1 order by equipment_type_name;
+					$rows = $this->db->get_results("select * from equipment_type where lower(equipment_type_name) like '%$label%' and status = 1 order by equipment_type_name;
 													
 													");
 					$data['resultcount']=count($rows);
@@ -78,7 +78,7 @@ class EquipmentTypeController extends RESTController
         	}else{
 
 				//list all action_type entries here
-				$rows = $this->db->get_results("select * from earthchem.equipment_type where status = 1 order by equipment_type_name;");
+				$rows = $this->db->get_results("select * from equipment_type where status = 1 order by equipment_type_name;");
 				$data['resultcount']=count($rows);
 				foreach($rows as $row){
 					
@@ -107,7 +107,7 @@ class EquipmentTypeController extends RESTController
 			$searchid = (int) str_replace("eqtype","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.equipment_type where equipment_type_num = $searchid");
+				$row = $this->db->get_row("select * from equipment_type where equipment_type_num = $searchid");
 
 				if($row->equipment_type_num){
 
@@ -115,7 +115,7 @@ class EquipmentTypeController extends RESTController
 
 
 					$this->db->query("
-										update earthchem.equipment_type set
+										update equipment_type set
 										status = 0
 										where equipment_type_num = $searchid
 									");
@@ -163,7 +163,7 @@ class EquipmentTypeController extends RESTController
 				$description = $p['definition']->en;
 				
 				$this->db->query("
-								insert into earthchem.equipment_type (
+								insert into equipment_type (
 														equipment_type_name,
 														equipment_type_description
 														) values (
@@ -172,7 +172,7 @@ class EquipmentTypeController extends RESTController
 														)
 				");
 			
-				$returnpkey = $this->db->get_var("select currval('earthchem.equipment_type_equipment_type_num_seq');");
+				$returnpkey = $this->db->get_var("select currval('equipment_type_equipment_type_num_seq');");
 				$returnuri = $this->baseUri."equipmentType/".$returnpkey;
 				$data=$p;
 				$data['uri']=$returnuri;
@@ -195,7 +195,7 @@ class EquipmentTypeController extends RESTController
 			$searchid = (int) str_replace("eqtype","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.equipment_type where equipment_type_num = $searchid");
+				$row = $this->db->get_row("select * from equipment_type where equipment_type_num = $searchid");
 
 				if($row->equipment_type_num){
 
@@ -213,7 +213,7 @@ class EquipmentTypeController extends RESTController
 						$description = $p['definition']->en;
 				
 						$this->db->query("
-										update earthchem.equipment_type
+										update equipment_type
 										set
 										equipment_type_name='$preflabel',
 										equipment_type_description='$description'

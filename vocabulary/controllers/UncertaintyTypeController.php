@@ -20,7 +20,7 @@ class UncertaintyTypeController extends RESTController
 			$searchid = (int) str_replace("uncerttype","",$id);
 
 			if(is_int($searchid)){
-				$row = $this->db->get_row("select * from earthchem.dataquality_type where dataquality_type_num=$searchid and status = 1");
+				$row = $this->db->get_row("select * from dataquality_type where dataquality_type_num=$searchid and status = 1");
 				if($row->dataquality_type_num){
 						$num = $row->dataquality_type_num;
 						$preflabel = $row->dataquality_type_name;
@@ -46,7 +46,7 @@ class UncertaintyTypeController extends RESTController
 
 					$label = strtolower($_GET['label']);
 					
-					$rows = $this->db->get_results("select * from earthchem.dataquality_type where lower(dataquality_type_name) like '%$label%' and status = 1 order by dataquality_type_description;
+					$rows = $this->db->get_results("select * from dataquality_type where lower(dataquality_type_name) like '%$label%' and status = 1 order by dataquality_type_description;
 													
 													");
 					$data['resultcount']=count($rows);
@@ -78,7 +78,7 @@ class UncertaintyTypeController extends RESTController
         	}else{
 
 				//list all action_type entries here
-				$rows = $this->db->get_results("select * from earthchem.dataquality_type where status = 1 order by dataquality_type_description;");
+				$rows = $this->db->get_results("select * from dataquality_type where status = 1 order by dataquality_type_description;");
 				$data['resultcount']=count($rows);
 				foreach($rows as $row){
 					
@@ -107,7 +107,7 @@ class UncertaintyTypeController extends RESTController
 			$searchid = (int) str_replace("uncerttype","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.dataquality_type where dataquality_type_num = $searchid");
+				$row = $this->db->get_row("select * from dataquality_type where dataquality_type_num = $searchid");
 
 				if($row->dataquality_type_num){
 
@@ -115,7 +115,7 @@ class UncertaintyTypeController extends RESTController
 
 
 					$this->db->query("
-										update earthchem.dataquality_type set
+										update dataquality_type set
 										status = 0
 										where dataquality_type_num = $searchid
 									");
@@ -163,7 +163,7 @@ class UncertaintyTypeController extends RESTController
 				$description = $p['definition']->en;
 				
 				$this->db->query("
-								insert into earthchem.dataquality_type (
+								insert into dataquality_type (
 														dataquality_type_name,
 														dataquality_type_description
 														) values (
@@ -172,7 +172,7 @@ class UncertaintyTypeController extends RESTController
 														)
 				");
 
-				$returnpkey = $this->db->get_var("select currval('earthchem.dataquality_type_dataquality_type_num_seq');");
+				$returnpkey = $this->db->get_var("select currval('dataquality_type_dataquality_type_num_seq');");
 				$returnuri = $this->baseUri."uncertaintyType/".$returnpkey;
 				$data=$p;
 				$data['uri']=$returnuri;
@@ -194,7 +194,7 @@ class UncertaintyTypeController extends RESTController
 			$searchid = (int) str_replace("uncerttype","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.dataquality_type where dataquality_type_num = $searchid");
+				$row = $this->db->get_row("select * from dataquality_type where dataquality_type_num = $searchid");
 
 				if($row->dataquality_type_num){
 
@@ -212,7 +212,7 @@ class UncertaintyTypeController extends RESTController
 						$description = $p['definition']->en;
 				
 						$this->db->query("
-										update earthchem.dataquality_type
+										update dataquality_type
 										set
 										dataquality_type_name='$preflabel',
 										dataquality_type_description='$description'

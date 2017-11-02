@@ -20,7 +20,7 @@ class OrganizationTypeController extends RESTController
 			$searchid = (int) str_replace("orgtype","",$id);
 
 			if(is_int($searchid)){
-				$row = $this->db->get_row("select * from earthchem.organization_type where organization_type_num=$searchid and status = 1");
+				$row = $this->db->get_row("select * from organization_type where organization_type_num=$searchid and status = 1");
 				if($row->organization_type_num){
 						$num = $row->organization_type_num;
 						$preflabel = $row->organization_type_name;
@@ -46,7 +46,7 @@ class OrganizationTypeController extends RESTController
 
 					$label = strtolower($_GET['label']);
 					
-					$rows = $this->db->get_results("select * from earthchem.organization_type where lower(organization_type_name) like '%$label%' and status = 1 order by organization_type_name;
+					$rows = $this->db->get_results("select * from organization_type where lower(organization_type_name) like '%$label%' and status = 1 order by organization_type_name;
 													
 													");
 					$data['resultcount']=count($rows);
@@ -78,7 +78,7 @@ class OrganizationTypeController extends RESTController
         	}else{
 
 				//list all action_type entries here
-				$rows = $this->db->get_results("select * from earthchem.organization_type where status = 1 order by organization_type_name;");
+				$rows = $this->db->get_results("select * from organization_type where status = 1 order by organization_type_name;");
 				$data['resultcount']=count($rows);
 				foreach($rows as $row){
 					
@@ -107,7 +107,7 @@ class OrganizationTypeController extends RESTController
 			$searchid = (int) str_replace("orgtype","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.organization_type where organization_type_num = $searchid");
+				$row = $this->db->get_row("select * from organization_type where organization_type_num = $searchid");
 
 				if($row->organization_type_num){
 
@@ -115,7 +115,7 @@ class OrganizationTypeController extends RESTController
 
 
 					$this->db->query("
-										update earthchem.organization_type set
+										update organization_type set
 										status = 0
 										where organization_type_num = $searchid
 									");
@@ -163,7 +163,7 @@ class OrganizationTypeController extends RESTController
 				$description = $p['definition']->en;
 				
 				$this->db->query("
-								insert into earthchem.organization_type (
+								insert into organization_type (
 														organization_type_name,
 														organization_type_description
 														) values (
@@ -172,7 +172,7 @@ class OrganizationTypeController extends RESTController
 														)
 				");
 
-				$returnpkey = $this->db->get_var("select currval('earthchem.organization_type_organization_type_num_seq');");
+				$returnpkey = $this->db->get_var("select currval('organization_type_organization_type_num_seq');");
 				$returnuri = $this->baseUri."organizationType/".$returnpkey;
 				$data=$p;
 				$data['uri']=$returnuri;
@@ -194,7 +194,7 @@ class OrganizationTypeController extends RESTController
 			$searchid = (int) str_replace("orgtype","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.organization_type where organization_type_num = $searchid");
+				$row = $this->db->get_row("select * from organization_type where organization_type_num = $searchid");
 
 				if($row->organization_type_num){
 
@@ -212,7 +212,7 @@ class OrganizationTypeController extends RESTController
 						$description = $p['definition']->en;
 				
 						$this->db->query("
-										update earthchem.organization_type
+										update organization_type
 										set
 										organization_type_name='$preflabel',
 										organization_type_description='$description'

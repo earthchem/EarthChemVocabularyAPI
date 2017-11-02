@@ -20,7 +20,7 @@ class MaterialController extends RESTController
 			$searchid = (int) str_replace("mat","",$id);
 
 			if(is_int($searchid)){
-				$row = $this->db->get_row("select * from earthchem.material where material_num=$searchid and status = 1");
+				$row = $this->db->get_row("select * from material where material_num=$searchid and status = 1");
 				if($row->material_num){
 					$num = $row->material_num;
 					$preflabel = $row->material_code;
@@ -46,7 +46,7 @@ class MaterialController extends RESTController
 
 					$label = strtolower($_GET['label']);
 					
-					$rows = $this->db->get_results("select * from earthchem.material where (lower(material_code) like '%$label%' or lower(material_code) like '%$label%') and status = 1
+					$rows = $this->db->get_results("select * from material where (lower(material_code) like '%$label%' or lower(material_code) like '%$label%') and status = 1
 													
 													");
 					$data['resultcount']=count($rows);
@@ -77,7 +77,7 @@ class MaterialController extends RESTController
         	}else{
 
 				//list all person entries here
-				$rows = $this->db->get_results("select * from earthchem.material where status = 1 order by material_code");
+				$rows = $this->db->get_results("select * from material where status = 1 order by material_code");
 				$data['resultcount']=count($rows);
 				foreach($rows as $row){
 					
@@ -105,7 +105,7 @@ class MaterialController extends RESTController
 			$searchid = (int) str_replace("mat","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.material where material_num = $searchid");
+				$row = $this->db->get_row("select * from material where material_num = $searchid");
 
 				if($row->material_num){
 
@@ -113,7 +113,7 @@ class MaterialController extends RESTController
 
 
 					$this->db->query("
-										update earthchem.material_num set
+										update material_num set
 										status = 0
 										where material_num = $searchid
 									");
@@ -167,7 +167,7 @@ class MaterialController extends RESTController
 				$description = $p['definition']->en;
 				
 				$this->db->query("
-								insert into earthchem.material (
+								insert into material (
 														material_code,
 														material_name
 														) values (
@@ -176,7 +176,7 @@ class MaterialController extends RESTController
 														)
 				");
 
-				$returnpkey = $this->db->get_var("select currval('earthchem.material_material_num_seq');");
+				$returnpkey = $this->db->get_var("select currval('material_material_num_seq');");
 				$returnuri = $this->baseUri."material/".$returnpkey;
 				$data=$p;
 				$data['uri']=$returnuri;
@@ -198,7 +198,7 @@ class MaterialController extends RESTController
 			$searchid = (int) str_replace("mat","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.material where material_num = $searchid");
+				$row = $this->db->get_row("select * from material where material_num = $searchid");
 
 				if($row->material_num){
 
@@ -221,7 +221,7 @@ class MaterialController extends RESTController
 						$description = $p['definition']->en;
 				
 						$this->db->query("
-										update earthchem.material
+										update material
 										set
 										material_code='$preflabel',
 										material_name='$altlabel'

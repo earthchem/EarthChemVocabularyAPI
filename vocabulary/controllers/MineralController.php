@@ -36,7 +36,7 @@ class MineralController extends RESTController
 			$searchid = (int) str_replace("min","",$id);
 
 			if(is_int($searchid)){
-				$row = $this->db->get_row("select * from earthchem.taxonomic_classifier where taxonomic_classifier_type_cv='Mineral' and taxonomic_classifier_num=$searchid and status = 1");
+				$row = $this->db->get_row("select * from taxonomic_classifier where taxonomic_classifier_type_cv='Mineral' and taxonomic_classifier_num=$searchid and status = 1");
 				if($row->taxonomic_classifier_num){
 						$num = $row->taxonomic_classifier_num;
 						$preflabel = $row->taxonomic_classifier_name;
@@ -63,7 +63,7 @@ class MineralController extends RESTController
 
 					$label = strtolower($_GET['label']);
 					
-					$rows = $this->db->get_results("select * from earthchem.taxonomic_classifier where taxonomic_classifier_type_cv='Mineral' and lower(taxonomic_classifier_name) like '%$label%' and status = 1
+					$rows = $this->db->get_results("select * from taxonomic_classifier where taxonomic_classifier_type_cv='Mineral' and lower(taxonomic_classifier_name) like '%$label%' and status = 1
 													
 													");
 					$data['resultcount']=count($rows);
@@ -95,7 +95,7 @@ class MineralController extends RESTController
         	}else{
 
 				//list all person entries here
-				$rows = $this->db->get_results("select * from earthchem.taxonomic_classifier where taxonomic_classifier_type_cv='Mineral' and status = 1 order by taxonomic_classifier_name");
+				$rows = $this->db->get_results("select * from taxonomic_classifier where taxonomic_classifier_type_cv='Mineral' and status = 1 order by taxonomic_classifier_name");
 				$data['resultcount']=count($rows);
 				foreach($rows as $row){
 					
@@ -126,7 +126,7 @@ class MineralController extends RESTController
 			$searchid = (int) str_replace("min","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.taxonomic_classifier where taxonomic_classifier_num = $searchid");
+				$row = $this->db->get_row("select * from taxonomic_classifier where taxonomic_classifier_num = $searchid");
 
 				if($row->taxonomic_classifier_num){
 
@@ -134,7 +134,7 @@ class MineralController extends RESTController
 
 
 					$this->db->query("
-										update earthchem.taxonomic_classifier set
+										update taxonomic_classifier set
 										status = 0
 										where taxonomic_classifier_num = $searchid
 									");
@@ -183,7 +183,7 @@ class MineralController extends RESTController
 				$description = $p['definition']->en;
 				
 				$this->db->query("
-								insert into earthchem.taxonomic_classifier (
+								insert into taxonomic_classifier (
 														taxonomic_classifier_name,
 														taxonomic_classifier_common_name,
 														taxonomic_classifier_description,
@@ -196,7 +196,7 @@ class MineralController extends RESTController
 														)
 				");
 
-				$returnpkey = $this->db->get_var("select currval('earthchem.taxonomic_classifier_taxonomic_classifier_num_seq');");
+				$returnpkey = $this->db->get_var("select currval('taxonomic_classifier_taxonomic_classifier_num_seq');");
 				$returnuri = $this->baseUri."mineral/".$returnpkey;
 				$data=$p;
 				$data['uri']=$returnuri;
@@ -218,7 +218,7 @@ class MineralController extends RESTController
 			$searchid = (int) str_replace("min","",$id);
 
 			if(is_int($searchid) && $searchid!=0){
-				$row = $this->db->get_row("select * from earthchem.taxonomic_classifier where taxonomic_classifier_num = $searchid");
+				$row = $this->db->get_row("select * from taxonomic_classifier where taxonomic_classifier_num = $searchid");
 
 				if($row->taxonomic_classifier_num){
 
@@ -237,7 +237,7 @@ class MineralController extends RESTController
 						$description = $p['definition']->en;
 				
 						$this->db->query("
-										update earthchem.taxonomic_classifier
+										update taxonomic_classifier
 										set
 										taxonomic_classifier_name='$preflabel',
 										taxonomic_classifier_common_name='$altlabel',
