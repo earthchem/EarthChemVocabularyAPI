@@ -35,18 +35,20 @@
 		var $dbpassword = false;
 		var $dbname = false;
 		var $dbhost = false;
+		var $dbport = false;
 
 		/**********************************************************************
 		*  Constructor - allow the user to perform a qucik connect at the
 		*  same time as initialising the ezSQL_postgresql class
 		*/
 
-		function ezSQL_postgresql($dbuser='', $dbpassword='', $dbname='', $dbhost='localhost')
+		function ezSQL_postgresql($dbuser='', $dbpassword='', $dbname='', $dbhost='localhost', $dbport='5432')
 		{
 			$this->dbuser = $dbuser;
 			$this->dbpassword = $dbpassword;
 			$this->dbname = $dbname;
 			$this->dbhost = $dbhost;
+			$this->dbport = $dbport;
 		}
 
 		/**********************************************************************
@@ -55,10 +57,10 @@
 		*  but for the sake of consistency it has been included
 		*/
 
-		function quick_connect($dbuser='', $dbpassword='', $dbname='', $dbhost='localhost')
+		function quick_connect($dbuser='', $dbpassword='', $dbname='', $dbhost='localhost', $dbport='5432')
 		{
 			$return_val = false;
-			if ( ! $this->connect($dbuser, $dbpassword, $dbname, $dbhost,true) ) ;
+			if ( ! $this->connect($dbuser, $dbpassword, $dbname, $dbhost, $dbport) ) ;
 			else if ( ! $this->select($dbname) ) ;
 			else $return_val = true;
 			return $return_val;
@@ -68,7 +70,7 @@
 		*  Try to connect to mySQL database server
 		*/
 
-		function connect($dbuser='', $dbpassword='', $dbname='', $dbhost)
+		function connect($dbuser='', $dbpassword='', $dbname='', $dbhost, $dbport)
 		{
 			global $ezsql_postgresql_str; $return_val = false;
 
@@ -79,8 +81,10 @@
 				$this->show_errors ? trigger_error($ezsql_postgresql_str[1],E_USER_WARNING) : null;
 			}
 			// Try to establish the server database handle
-			else if ( ! $this->dbh = @pg_connect("host=$dbhost user=$dbuser password=$dbpassword dbname=$dbname",true) )	//should be modified for port
+			else if ( ! $this->dbh = @pg_connect("host=$dbhost port=$dbport user=$dbuser password=$dbpassword dbname=$dbname",true) )	//should be modified for port
 			{       
+				echo "host=$dbhost port=$dbport user=$dbuser password=$dbpassword dbname=$dbname";
+				
 				$this->register_error($ezsql_postgresql_str[2].' in '.__FILE__.' on line '.__LINE__);
 				$this->show_errors ? trigger_error($ezsql_postgresql_str[2],E_USER_WARNING) : null;
 			}
@@ -89,7 +93,8 @@
 				$this->dbuser = $dbuser;
 				$this->dbpassword = $dbpassword;
 				$this->dbhost = $dbhost;
-                		$this->dbname = $dbname;
+                $this->dbname = $dbname;
+                $this->dbport = $dbport;
 				$return_val = true;
 			}
 
@@ -101,10 +106,11 @@
 		*  once again, function included for the sake of consistency
 		*/
 
-		function select($dbuser='', $dbpassword='', $dbname='', $dbhost='localhost')
+		function select($dbuser='', $dbpassword='', $dbname='', $dbhost='localhost', $dbport='5432')
 		{  
+
 			$return_val = false;
-			if ( ! $this->connect($dbuser, $dbpassword, $dbname, $dbhost,true) ) ;
+			if ( ! $this->connect($dbuser, $dbpassword, $dbname, $dbhost, $dbport) ) ;
 			else if ( ! $this->select($dbname) ) ;
 			else $return_val = true;
 			return $return_val;
@@ -183,7 +189,7 @@
 			// If there is no existing database connection then try to connect
 			if ( ! isset($this->dbh) || ! $this->dbh )
 			{   
-				$this->connect($this->dbuser, $this->dbpassword, $this->dbname, $this->dbhost);
+				$this->connect($this->dbuser, $this->dbpassword, $this->dbname, $this->dbhost, $this->dbport);
 			}
 
 			// Perform the query via std postgresql_query function..

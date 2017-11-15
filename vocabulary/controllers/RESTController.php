@@ -32,6 +32,7 @@ class RESTController
 		if(!$altlabel)$altlabel=$preflabel;
 		
 		$thisobj = [];
+		$thisobj['id']=$this->baseUri."$num";
 		$thisobj['uri']=$this->baseUri."$controller/$prefix$num";
 		$thisobj['prefLabel']['en']=$preflabel;
 		$thisobj['altLabel']['en']=$altlabel;
