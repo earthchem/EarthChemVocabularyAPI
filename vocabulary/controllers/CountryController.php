@@ -208,7 +208,7 @@ class countryController extends RESTController
 					
 					//print_r($p);exit();
 						
-					$preflabel = $p['prefLabel']->en;
+					$preflabel = pg_escape_string($p['prefLabel']->en);
 
 					if($preflabel == ""){
 			
@@ -217,7 +217,7 @@ class countryController extends RESTController
 					}
 					else{
 			
-						$altlabel = $p['altLabel']->en;
+						$altlabel = pg_escape_string($p['altLabel']->en);
 				
 						$this->db->query("
 										update country

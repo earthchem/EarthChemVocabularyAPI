@@ -20,7 +20,7 @@ class ChemicalAnalysisTypeController extends RESTController
 			$searchid = (int) str_replace("catype","",$id);
 
 			if(is_int($searchid)){
-				$row = $this->db->get_row("select * from action_type where action_sub_type='chemical_analysis_type' and action_type_num=$searchid and status = 1");
+				$row = $this->db->get_row("select * from action_type where action_type_category='chemical_analysis_type' and action_type_num=$searchid and status = 1");
 				if($row->action_type_num){
 						$num = $row->action_type_num;
 						$preflabel = $row->action_type_name;
@@ -46,7 +46,7 @@ class ChemicalAnalysisTypeController extends RESTController
 
 					$label = strtolower($_GET['label']);
 					
-					$rows = $this->db->get_results("select * from action_type where action_sub_type='chemical_analysis_type' and lower(action_type_name) like '%$label%' and status = 1
+					$rows = $this->db->get_results("select * from action_type where action_type_category='chemical_analysis_type' and lower(action_type_name) like '%$label%' and status = 1
 													
 													");
 					$data['resultcount']=count($rows);
@@ -78,7 +78,7 @@ class ChemicalAnalysisTypeController extends RESTController
         	}else{
 
 				//list all action_type entries here
-				$rows = $this->db->get_results("select * from action_type where action_sub_type='chemical_analysis_type' and status = 1 order by action_type_name");
+				$rows = $this->db->get_results("select * from action_type where action_type_category='chemical_analysis_type' and status = 1 order by action_type_name");
 				$data['resultcount']=count($rows);
 				foreach($rows as $row){
 					
@@ -166,7 +166,7 @@ class ChemicalAnalysisTypeController extends RESTController
 								insert into action_type (
 														action_type_name,
 														action_type_description,
-														action_sub_type
+														action_type_category
 														) values (
 														'$preflabel',
 														'$description',

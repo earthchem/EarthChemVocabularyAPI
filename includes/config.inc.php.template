@@ -4,6 +4,7 @@ $dbuser="dbusernamehere";
 $dbpassword="dbpasswordhere";
 $dbname="dbnamehere";
 $dbserver="dbserverhere";
-
+$dbport="5432";
+$baseuri="http://vocab.earthchemportal.org/vocabulary/";
 
 ?>

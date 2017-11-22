@@ -13,10 +13,9 @@ var updateRightSide = function() {
 	
 	$('#searchbox').val('');
 	
-	showAll();
-	
 	if(selectedObject!=""){
 	
+		showAll();
 		$('#newbutton').show();
 		$('#searchboxwrapper').show();
 		$("#searchlist").html("");
