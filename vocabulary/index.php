@@ -56,7 +56,7 @@ if (class_exists($controller_name)) {
 	if($showcontroller=="null"){//top-level
 	
 		//show list of vocabularies
-		$result[1]['uri']="http://vocab.earthchemportal.org/vocabulary/chemicalAnlysisType"; $result[1]['prefLabel']['en']="Chemical Analysis Type"; $result[1]['definition']['en']="Vocabulary containing Chemical Analysis Type entries.";
+		$result[1]['uri']="http://vocab.earthchemportal.org/vocabulary/chemicalAnalysisType"; $result[1]['prefLabel']['en']="Chemical Analysis Type"; $result[1]['definition']['en']="Vocabulary containing Chemical Analysis Type entries.";
 		$result[2]['uri']="http://vocab.earthchemportal.org/vocabulary/country"; $result[2]['prefLabel']['en']="Country"; $result[2]['definition']['en']="Vocabulary containing Country entries.";
 		$result[3]['uri']="http://vocab.earthchemportal.org/vocabulary/equipmentType"; $result[3]['prefLabel']['en']="Equipment Type"; $result[3]['definition']['en']="Vocabulary containing Equipment Type entries.";
 		$result[4]['uri']="http://vocab.earthchemportal.org/vocabulary/expeditionType"; $result[4]['prefLabel']['en']="Expedition Type"; $result[4]['definition']['en']="Vocabulary containing Expedition Type entries.";
